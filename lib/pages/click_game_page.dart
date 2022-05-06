@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/components/option_image.dart';
 
 class ClickGamePage extends StatefulWidget {
   ClickGamePage({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _ClickGamePageState extends State<ClickGamePage> {
   List<int> random_list = [];
   int ans = -1;
   int score = 0;
-  void Click(int num) {
+  void click(int num) {
     if (num == ans) {
       score++;
     }
@@ -36,42 +37,18 @@ class _ClickGamePageState extends State<ClickGamePage> {
               "Please Select $ans",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            InkWell(
-              onTap: () {
-                Click(random_list[0]);
-                setState(() {});
-              },
-              child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image(
-                      image:
-                          AssetImage("assets/number/${random_list[0]}.png"))),
-            ),
-            InkWell(
-              onTap: () {
-                Click(random_list[1]);
-                setState(() {});
-              },
-              child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image(
-                      image:
-                          AssetImage("assets/number/${random_list[1]}.png"))),
-            ),
-            InkWell(
-              onTap: () {
-                Click(random_list[2]);
-                setState(() {});
-              },
-              child: SizedBox(
-                  width: 100,
-                  height: 100,
-                  child: Image(
-                      image:
-                          AssetImage("assets/number/${random_list[2]}.png"))),
-            ),
+            OptionImage("assets/number/${random_list[0]}.png", () {
+              click(random_list[0]);
+              setState(() {});
+            }),
+            OptionImage("assets/number/${random_list[1]}.png", () {
+              click(random_list[1]);
+              setState(() {});
+            }),
+            OptionImage("assets/number/${random_list[2]}.png", () {
+              click(random_list[2]);
+              setState(() {});
+            }),
             Text(
               "Your Score is $score",
               style: TextStyle(
